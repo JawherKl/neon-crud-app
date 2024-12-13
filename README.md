@@ -7,7 +7,7 @@ Welcome to the **API Design Study Repository**! This project is a hands-on explo
 ## 📂 Project Structure
 
 ```
-api-design-study/
+api-design/
 ├── README.md
 ├── rest-api/
 │   ├── nodejs/
@@ -31,14 +31,14 @@ api-design-study/
 │       ├── pom.xml
 │       └── src/
 │           ├── main/
-│           │   ├── java/# API Design Study Repository
+│           │   ├── java/# API Design Repository
 
 This repository is dedicated to studying and implementing different types of API design patterns: REST API, GraphQL, and gRPC. It includes implementations across four frameworks: **Node.js**, **Golang**, **Symfony**, and **Spring Boot**.
 
 ## Project Structure
 
 ```
-api-design-study/
+api-design/
 ├── README.md
 ├── rest-api/
 │   ├── nodejs/
@@ -148,12 +148,12 @@ Ensure you have the following tools installed:
 ### Setup
 Clone the repository:
 ```bash
-git clone https://github.com/JawherKl/api-design-study.git
+git clone https://github.com/JawherKl/api-design.git
 ```
 
 Navigate to a specific API type and framework to start working:
 ```bash
-cd api-design-study/rest-api/nodejs
+cd api-design/rest-api/nodejs
 ```
 
 Install dependencies and start the server:
@@ -266,12 +266,12 @@ Ensure you have the following installed:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/JawherKl/api-design-study.git
+   git clone https://github.com/JawherKl/api-design.git
    ```
 
 2. Navigate to a specific API type and framework:
    ```bash
-   cd api-design-study/rest-api/nodejs
+   cd api-design/rest-api/nodejs
    ```
 
 3. Install dependencies and start the server:
