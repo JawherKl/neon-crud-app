@@ -24,5 +24,7 @@ In this section, we compare the frameworks based on different parameters like pe
 Each framework has its strengths and trade-offs, and the choice depends on the specific project requirements.
 
 ## Additional Resources
-- [Node.js documentation](https://www.example.com)
-- [Golang documentation](https://www.example.com)
+- [Node.js documentation](https://nodejs.org/docs/latest/api/)
+- [Golang documentation](https://go.dev/doc/)
+- [Symfony documentation](https://symfony.com/doc/current/index.html)
+- [Spring Boot documentation](https://docs.spring.io/spring-boot/index.html)

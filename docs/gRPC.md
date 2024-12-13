@@ -29,5 +29,6 @@ gRPC is a high-performance, open-source, and universal remote procedure call (RP
 - Client-Server Communication
 
 ## Additional Resources
-- [gRPC tutorial](https://www.example.com)
-- [gRPC with Protocol Buffers](https://www.example.com)
+- [Introduction to gRPC](https://grpc.io/docs/what-is-grpc/introduction/)
+- [gRPC tutorial](https://www.tutorialspoint.com/grpc/index.htm)
+- [gRPC with Protocol Buffers](https://medium.com/@cshelper/grpc-and-protobuf-proto-2b43217341c)
