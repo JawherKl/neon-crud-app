@@ -29,5 +29,5 @@ GraphQL is a query language for APIs that allows clients to request specific dat
 - Resolver functions
 
 ## Additional Resources
-- [GraphQL best practices](https://www.example.com)
-- [GraphQL Schema design](https://www.example.com)
+- [GraphQL best practices](https://graphql.org/learn/best-practices/)
+- [GraphQL Schema design](https://www.apollographql.com/docs/apollo-server/schema/schema)

@@ -29,5 +29,5 @@ A RESTful API is an architectural style for providing standards between computer
 - URL structure best practices
 
 ## Additional Resources
-- [Best practices for REST API design](https://www.example.com)
-- [RESTful API guidelines](https://www.example.com)
+- [Best practices for REST API design](https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/)
+- [RESTful API guidelines](https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design)
