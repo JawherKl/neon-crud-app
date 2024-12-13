@@ -61,3 +61,46 @@ graphql-nodejs-ecommerce/
 ├── package.json
 └── .env
 ```
+
+### Testing the Application:
+Run the following mutations/queries in Apollo Studio or Postman to test:
+
+#### **Register a User**
+```graphql
+mutation {
+  register(name: "Jhon Doe", email: "jhon@example.com", password: "securepassword", role: "admin") {
+    user {
+      id
+      name
+      email
+      role
+    }
+    token
+  }
+}
+```
+
+#### **Login a User**
+```graphql
+mutation {
+  login(email: "john@example.com", password: "securepassword") {
+    user {
+      id
+      name
+    }
+    token
+  }
+}
+```
+
+#### **Create a Product**
+Include the token in the header (`Authorization: Bearer <token>`):
+```graphql
+mutation {
+  createProduct(name: "Product A", description: "Description A", price: 19.99) {
+    id
+    name
+    price
+  }
+}
+```
