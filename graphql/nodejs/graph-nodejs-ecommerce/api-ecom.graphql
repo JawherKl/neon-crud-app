@@ -107,3 +107,11 @@ mutation {
   deleteOrder(id: "67603c1a51c9b63ef70f4ef5")
 }
 
+mutation {
+  createReview(productId: "675c450f7afc8eb38175f4b8", rating: 5, comment: "Great product!") {
+    id
+    rating
+    comment
+    createdAt
+  }
+}
