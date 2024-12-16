@@ -6,6 +6,12 @@ const orderService = {
     return await Order.find({ user: userId })
         .populate('products.product', 'id name description price');
   },
+  async getProducts() {
+      return await Product.find();
+    },
+  async getOrders() {
+      return await Order.find();
+  },
   async getOrderById(id) {
     return await Order.findById(id).populate('products.product', 'id name price');
   },

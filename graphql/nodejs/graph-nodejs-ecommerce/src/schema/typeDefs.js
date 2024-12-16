@@ -41,6 +41,14 @@ const typeDefs = gql`
     product: Product!
     quantity: Int!
   }
+  type Review {
+    id: ID!
+    user: User!
+    product: Product!
+    rating: Int!
+    comment: String
+    createdAt: String!
+  }
 
   # Queries
   type Query {
@@ -53,7 +61,11 @@ const typeDefs = gql`
 
     # Order Queries
     getOrderById(id: ID!): Order
-    getAllOrders: [Order!]!
+    getOrders: [Order!]!
+
+    # Review Queries
+    getReviewsByProduct(productId: ID!): [Review!]!
+    getReviewById(id: ID!): Order
   }
 
   # Mutations
@@ -71,6 +83,9 @@ const typeDefs = gql`
     createOrder(products: [OrderInput!]!, totalAmount: Float!): Order
     updateOrderStatus(id: ID!, status: String!): Order
     deleteOrder(id: ID!): Boolean
+
+    # Review Mutations
+    createReview(productId: ID!, rating: Int!, comment: String): Review
   }
 
   # Input types
