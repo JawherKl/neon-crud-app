@@ -26,7 +26,6 @@ const productService = {
 
     return await product.save();
   },
-
   async deleteProduct(id) {
     const product = await Product.findByIdAndDelete(id);
     if (!product) throw new Error('Product not found');

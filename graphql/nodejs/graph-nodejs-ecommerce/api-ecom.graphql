@@ -1,0 +1,109 @@
+mutation {
+  register(name: "at Doe", email: "at@gmail.com", password: "atpass", role: "admin") {
+    user {
+      id
+      name
+      email
+      role
+    }
+    token
+  }
+}
+
+mutation Login($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    user {
+      id
+      name
+      email
+    }
+    token
+  }
+}
+
+mutation {
+  createProduct(name: "Iphone 12 pro", description: "appele new iphone 2021", price: 2219.99) {
+    id
+    name
+    price
+  }
+}
+
+query GetProducts {
+  getProducts {
+    id
+    name
+    price
+  }
+}
+
+query {
+  getProductById(id: "675c450f7afc8eb38175f4b8") {
+    name
+  }
+}
+
+mutation {
+  updateProduct(id: "675c450f7afc8eb38175f4b8", name: "Laptop PC", description: "Lenovo laptop omen 16", price: 2119.99) {
+    id
+    name
+    price
+  }
+}
+
+mutation DeleteProduct($deleteProductId: ID!) {
+  deleteProduct(id: $deleteProductId) {
+    name
+  }
+}
+
+
+
+mutation {
+  createOrder(
+    products: [
+      { productId: "675c450f7afc8eb38175f4b8", quantity: 2 },
+      { productId: "67602eb9d8bba236ba506dbc", quantity: 1 }
+    ],
+    totalAmount: 7339.98
+  ) {
+    id
+    totalAmount
+    status
+    products {
+      product {
+        id
+        name
+      }
+      quantity
+    }
+  }
+}
+
+mutation {
+  updateOrderStatus(id: "67603b984f2704a4b11857e0", status: "Shipped") {
+    id
+    status
+  }
+}
+
+query {
+  getOrderById(id: "67603c1a51c9b63ef70f4ef5") {
+    id
+    totalAmount
+    status
+    products {
+      product {
+        id
+        name
+        price
+      }
+      quantity
+    }
+  }
+}
+
+mutation {
+  deleteOrder(id: "67603c1a51c9b63ef70f4ef5")
+}
+

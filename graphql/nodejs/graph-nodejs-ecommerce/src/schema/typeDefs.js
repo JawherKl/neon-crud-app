@@ -50,6 +50,10 @@ const typeDefs = gql`
     # Product Queries
     getProducts: [Product]
     getProductById(id: ID!): Product
+
+    # Order Queries
+    getOrderById(id: ID!): Order
+    getAllOrders: [Order!]!
   }
 
   # Mutations
@@ -65,7 +69,8 @@ const typeDefs = gql`
 
     # Order Mutations
     createOrder(products: [OrderInput!]!, totalAmount: Float!): Order
-    updateOrderStatus(orderId: ID!, status: String!): Order
+    updateOrderStatus(id: ID!, status: String!): Order
+    deleteOrder(id: ID!): Boolean
   }
 
   # Input types
