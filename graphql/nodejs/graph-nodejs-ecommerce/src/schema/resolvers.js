@@ -23,8 +23,8 @@ const resolvers = {
     register: async (_, args) => {
         return await authService.register(args);
     },
-    login: async (_, { email, password }) => {
-        return await authService.login(email, password);
+    login: async (_, args) => {
+        return await authService.login(args);
     },
     // Product Mutations
     createProduct: async (_, args, { user }) => {
