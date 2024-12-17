@@ -33,20 +33,20 @@ const resolvers = {
   },
   Mutation: {
     // Auth Mutations
-    register: async (_, args) => {
-        return await authService.register(args);
+    register: async (_, { name, email, password, role }) => {
+        return await authService.register({ name, email, password, role });
     },
-    login: async (_, args) => {
-        return await authService.login(args);
+    login: async (_, { email, password }) => {
+        return await authService.login({ email, password });
     },
     // Product Mutations
-    createProduct: async (_, args, { user }) => {
+    createProduct: async (_, { name, description, price }, { user }) => {
       if (!user || user.role !== 'admin') throw new Error('Unauthorized');
-      return productService.createProduct(args);
+      return productService.createProduct({ name, description, price });
     },
-    updateProduct: async (_, args, { user }) => {
+    updateProduct: async (_, { id, name, description, price }, { user }) => {
       if (!user || user.role !== 'admin') throw new Error('Unauthorized');
-      return productService.updateProduct(args);
+      return productService.updateProduct({ id, name, description, price });
     },
     deleteProduct: async (_, { id }, { user }) => {
       if (!user || user.role !== 'admin') throw new Error('Unauthorized');
