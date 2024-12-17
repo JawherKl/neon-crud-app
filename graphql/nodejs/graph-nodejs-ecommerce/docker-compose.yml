@@ -9,13 +9,13 @@ services:
       - mongo-data:/data/db
     restart: always
 
-  graphql:
-    build: .
-    ports:
-      - "4000:4000"
-    depends_on:
-      - mongodb    
-    command: sh -c "npm run start"
+  #graphql:
+  #  build: .
+  #  ports:
+  #    - "4000:4000"
+  #  depends_on:
+  #    - mongodb    
+  #  command: sh -c "npm run start"
 
 volumes:
   mongo-data:
