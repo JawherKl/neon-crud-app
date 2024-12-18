@@ -9,7 +9,7 @@ describe('Auth APIs', () => {
   it('should register a new user', async () => {
     const mutation = `
       mutation {
-        register(name: "Test User", email: "test@test.com", password: "123456", role: "user") {
+        register(name: "Test User", email: "test@test.com", password: "123456", role: "admin") {
           user {
             name
             email
@@ -24,7 +24,6 @@ describe('Auth APIs', () => {
       .post('/graphql')
       .send({ query: mutation });
 
-    console.log('GraphQL response:', response.body);
     expect(response.status).toBe(200);
     expect(response.body.data.register).toBeDefined();
     expect(response.body.data.register.user.email).toBe('test@test.com');
@@ -43,7 +42,6 @@ describe('Auth APIs', () => {
       .post('/graphql')
       .send({ query: mutation });
 
-    console.log('GraphQL response:', response.body);
     expect(response.status).toBe(200);
     expect(response.body.data.login).toBeDefined();
     expect(response.body.data.login.token).toBeDefined();

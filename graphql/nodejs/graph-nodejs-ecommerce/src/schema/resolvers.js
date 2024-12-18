@@ -40,9 +40,11 @@ const resolvers = {
         return await authService.login({ email, password });
     },
     // Product Mutations
-    createProduct: async (_, { name, description, price }, { user }) => {
-      if (!user || user.role !== 'admin') throw new Error('Unauthorized');
-      return productService.createProduct({ name, description, price });
+    createProduct: async (_, { name, description, price }, context) => {
+      if (!context.user || context.user.role !== 'admin') {
+        throw new Error('Unauthorized');
+      }
+      return await productService.createProduct({ name, description, price });
     },
     updateProduct: async (_, { id, name, description, price }, { user }) => {
       if (!user || user.role !== 'admin') throw new Error('Unauthorized');
@@ -53,9 +55,11 @@ const resolvers = {
       return productService.deleteProduct(id);
     },
     // Order Mutations
-    createOrder: async (_, { products, totalAmount }, { user }) => {
-      if (!user) throw new Error('Authentication required');
-      return await orderService.createOrder({ userId: user.id, products, totalAmount });
+    createOrder: async (_, { products, totalAmount }, context) => {
+      if (!context.user) {
+        throw new Error('Authentication required');
+      }
+      return await orderService.createOrder({ userId: context.user.id, products, totalAmount });
     },
     updateOrderStatus: async (_, { id, status }, { user }) => {
       if (!user || user.role !== 'admin') throw new Error('Unauthorized');
@@ -66,9 +70,11 @@ const resolvers = {
       return orderService.deleteOrder(id);
     },
     // Review Mutations
-    createReview: async (_, { productId, rating, comment }, { user }) => {
-      if (!user) throw new Error('Authentication required');
-      const userId = new mongoose.Types.ObjectId(user.id);
+    createReview: async (_, { productId, rating, comment }, context) => {
+      if (!context.user) {
+        throw new Error('Authentication required');
+      }
+      const userId = new mongoose.Types.ObjectId(context.user.id);
       return await reviewService.createReview({ userId, productId, rating, comment });
     },
   },

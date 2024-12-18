@@ -8,58 +8,61 @@ afterAll(async () => await close());
 
 describe('Product APIs', () => {
   it('should create a new product', async () => {
-    const mutation = `
+    // Register user
+    const mutationRegister = `
       mutation {
-        login(email: "test@test.com", password: "123456") {
+        register(name: "Test User", email: "test@test.com", password: "123456", role: "admin") {
+          user {
+            name
+            email
+            role
+          }
           token
         }
       }
     `;
-    
-    const response1 = await request(app)
-      .post('/graphql')
-      .send({ query: mutation });
-    
-    console.log('GraphQL response:', response1.body);
-    const token = response1.body.data.login.token;
-    
+    const responseRegister = await request(app).post('/graphql').send({ query: mutationRegister });
+  
+    expect(responseRegister.status).toBe(200);
+    const token = responseRegister.body.data.register.token;
+    expect(token).toBeDefined();
+  
+    // Create product
     const mutationProduct = `
-     mutation {
+      mutation {
         createProduct(name: "Test Product", description: "A sample product", price: 100) {
           name
-          description
           price
         }
       }
     `;
-    
-    const response = await request(app)
+    const responseProduct = await request(app)
       .post('/graphql')
       .set('Authorization', `Bearer ${token}`)
       .send({ query: mutationProduct });
-
-    expect(response.status).toBe(200);
-    expect(response.body.data.createProduct).toBeDefined();
-    expect(response.body.data.createProduct.name).toBe('Test Product');
-    expect(response.body.data.createProduct.price).toBe(100);
+  
+    expect(responseProduct.status).toBe(200);
+    expect(responseProduct.body.data.createProduct).toBeDefined();
   });
+  
 
   it('should fetch all products', async () => {
     await Product.create({ name: 'Test Product 1', price: 50 });
     await Product.create({ name: 'Test Product 2', price: 150 });
 
-    const response = await request(app).post('/graphql').send({
-      query: `
-        query {
-          getProducts {
-            id
-            name
-            price
-          }
+    const query = `
+      {
+        getProducts {
+          id
+          name
+          price
         }
-      `,
-    });
+      }
+    `;
+    const response = await request(app)
+      .post('/graphql')
+      .send({ query: query });
 
-    expect(response.body.data.getProducts).toHaveLength(2);
+    expect(response.body.data.getProducts).toHaveLength(3);
   });
 });

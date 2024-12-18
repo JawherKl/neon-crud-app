@@ -9,7 +9,25 @@ afterAll(async () => await close());
 
 describe('Order APIs', () => {
   it('should create an order', async () => {
-    const mutation = `
+    const mutationRegister = `
+      mutation {
+        register(name: "Test User", email: "test@test.com", password: "123456", role: "admin") {
+          user {
+            name
+            email
+            role
+          }
+          token
+        }
+      }
+    `;
+    const responseRegister = await request(app).post('/graphql').send({ query: mutationRegister });
+  
+    expect(responseRegister.status).toBe(200);
+    const token = responseRegister.body.data.register.token;
+    expect(token).toBeDefined();
+  
+    const mutationProduct = `
      mutation {
           createProduct(name: "Tests Product", description: "test product description", price: 200) {  
             id
@@ -17,11 +35,13 @@ describe('Order APIs', () => {
         }
     `;
     
-    const product = await request(app)
+    const responseProduct = await request(app)
       .post('/graphql')
-      .send({ query: mutation });
+      .set('Authorization', `Bearer ${token}`)
+      .send({ query: mutationProduct });
     
-    const productId = product.body.data.createProduct.id;
+    const productId = responseProduct.body.data.createProduct.id;
+    expect(productId).toBeDefined();
     
     const mutationOrder = `
      mutation {
@@ -36,13 +56,14 @@ describe('Order APIs', () => {
     `;
     
     
-    const response = await request(app)
+    const responseOrder = await request(app)
       .post('/graphql')
+      .set('Authorization', `Bearer ${token}`)
       .send({ query: mutationOrder });
     
     
-    expect(response.status).toBe(200);
-    expect(response.body.data.createOrder).toBeDefined();
-    expect(response.body.data.createOrder.totalAmount).toBe(200);
+    expect(responseOrder.status).toBe(200);
+    expect(responseOrder.body.data.createOrder).toBeDefined();
+    expect(responseOrder.body.data.createOrder.totalAmount).toBe(200);
   });
 });
