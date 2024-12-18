@@ -105,6 +105,7 @@ mutation {
 }
 ```
 ### Command Execution
+`npm install` or
 `npm run start` or
 `npm run dev` or
 `npm run test`
