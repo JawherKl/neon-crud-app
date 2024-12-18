@@ -104,7 +104,7 @@ mutation {
   }
 }
 ```
-### Command Execution
+### Command Execution:
 `npm install`
 
 `npm run start` or
