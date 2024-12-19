@@ -51,7 +51,7 @@ server.addService(orderProto.OrderService.service, {
 });
 
 // Start the server
-const port = '127.0.0.1:50050';
+const port = '127.0.0.1:50051';
 server.bindAsync(port, grpc.ServerCredentials.createInsecure(), (err) => {
   if (err) {
     console.error('Failed to bind server:', err);
