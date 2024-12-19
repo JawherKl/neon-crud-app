@@ -7,7 +7,7 @@ const orderProtoPath = path.resolve(__dirname, '../proto/order.proto');
 const orderProto = grpc.loadPackageDefinition(protoLoader.loadSync(orderProtoPath)).order;
 
 // Create a client
-const client = new orderProto.OrderService('127.0.0.1:50050', grpc.credentials.createInsecure());
+const client = new orderProto.OrderService('127.0.0.1:50051', grpc.credentials.createInsecure());
 
 // Test CreateOrder
 client.CreateOrder({ customer_id: '123', items: ['item1', 'item2'] }, (err, response) => {
