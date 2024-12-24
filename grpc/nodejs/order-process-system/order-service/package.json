@@ -17,6 +17,10 @@
     "grpc": "^1.24.11",
     "grpc-node-server-reflection": "^1.0.2",
     "grpc-reflection-js": "^0.3.0",
-    "mocha": "^11.0.1"
+    "mocha": "^11.0.1",
+    "mysql2": "^3.12.0",
+    "pg": "^8.13.1",
+    "sequelize": "^6.37.5",
+    "sequelize-cli": "^6.6.2"
   }
 }

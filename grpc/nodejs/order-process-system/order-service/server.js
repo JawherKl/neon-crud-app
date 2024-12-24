@@ -2,6 +2,7 @@ const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 const path = require('path');
 const { default: wrapServerWithReflection } = require('grpc-node-server-reflection');
+const db = require('./models'); // Adjust path if necessary
 
 // Load .proto files
 const PROTO_PATH = path.join(__dirname, '../proto/order.proto');
@@ -18,26 +19,38 @@ const orderProto = grpc.loadPackageDefinition(packageDefinition).order;
 let orders = {};
 
 // Implement CreateOrder RPC
-const createOrder = (call, callback) => {
-  const orderId = `order-${Date.now()}`;
-  orders[orderId] = {
-    customer_id: call.request.customer_id,
-    items: call.request.items,
-    status: 'Pending',
-  };
-  callback(null, { order_id: orderId, status: 'Pending' });
+const createOrder = async (call, callback) => {
+  const { customer_id, items } = call.request;
+
+  try {
+    const newOrder = await db.Order.create({
+      id: `order-${Date.now()}`,
+      customer_id,
+      status: "PENDING",
+    });
+
+    callback(null, { order_id: newOrder.id, status: newOrder.status });
+  } catch (error) {
+    console.error(error);
+    callback({ code: grpc.status.INTERNAL, message: "Failed to create order" });
+  }
 };
 
 // Implement GetOrderStatus RPC
-const getOrderStatus = (call, callback) => {
-  const order = orders[call.request.order_id];
-  if (order) {
-    callback(null, { order_id: call.request.order_id, status: order.status });
-  } else {
-    callback({
-      code: grpc.status.NOT_FOUND,
-      details: 'Order not found',
-    });
+const getOrderStatus = async (call, callback) => {
+  const { order_id } = call.request;
+
+  try {
+    const order = await db.Order.findByPk(order_id);
+
+    if (order) {
+      callback(null, { order_id: order.id, status: order.status });
+    } else {
+      callback({ code: grpc.status.NOT_FOUND, message: "Order not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    callback({ code: grpc.status.INTERNAL, message: "Failed to fetch order status" });
   }
 };
 
