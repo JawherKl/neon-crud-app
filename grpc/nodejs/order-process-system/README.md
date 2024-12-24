@@ -28,7 +28,7 @@ npm install @grpc/grpc-js @grpc/proto-loader grpc-node-server-reflection
 
 ### 1. **Order Service**
 
-**Proto Definition**: [`order.proto`](../proto/order.proto)
+**Proto Definition**: [`order.proto`](proto/order.proto)
 
 **Endpoints**:
 - `CreateOrder`
@@ -59,7 +59,7 @@ npm install @grpc/grpc-js @grpc/proto-loader grpc-node-server-reflection
 
 ### 2. **Inventory Service**
 
-**Proto Definition**: [`inventory.proto`](../proto/inventory.proto)
+**Proto Definition**: [`inventory.proto`](proto/inventory.proto)
 
 **Endpoints**:
 - `CheckAvailability`
@@ -86,7 +86,7 @@ npm install @grpc/grpc-js @grpc/proto-loader grpc-node-server-reflection
 
 ### 3. **Notification Service**
 
-**Proto Definition**: [`notification.proto`](../proto/notification.proto)
+**Proto Definition**: [`notification.proto`](proto/notification.proto)
 
 **Endpoints**:
 - `SendNotification`
@@ -110,7 +110,7 @@ npm install @grpc/grpc-js @grpc/proto-loader grpc-node-server-reflection
 
 ### 4. **Payment Service**
 
-**Proto Definition**: [`payment.proto`](../proto/payment.proto)
+**Proto Definition**: [`payment.proto`](proto/payment.proto)
 
 **Endpoints**:
 - `ProcessPayment`
@@ -155,10 +155,10 @@ npm install @grpc/grpc-js @grpc/proto-loader grpc-node-server-reflection
 
 ## Contributing
 
-Contributions are welcome! Please follow the [contribution guidelines](../CONTRIBUTING.md) in the repository.
+Contributions are welcome! Please follow the [contribution guidelines](CONTRIBUTING.md) in the repository.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](../LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
