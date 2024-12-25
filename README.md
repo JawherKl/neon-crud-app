@@ -168,4 +168,3 @@ We welcome contributions! Feel free to:
 [![Stargazers over time](https://starchart.cc/JawherKl/api-design.svg?variant=adaptive)](https://starchart.cc/JawherKl/api-design)
 
 Give me stars! Thank you!!!
-
