@@ -5,6 +5,7 @@ Welcome to the **API Design Study Repository**! This project is a hands-on explo
 ---
 
 ## 📂 Project Structure
+
 ```
 api-design-study/
 ├── README.md
